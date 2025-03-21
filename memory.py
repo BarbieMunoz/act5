@@ -49,9 +49,12 @@ def xy(count):
     """Convert tiles count to (x, y) coordinates."""
     return (count % 8) * 50 - 200, (count // 8) * 50 - 200
 
-
+# variable para guardar los taps
+taps =0
 def tap(x, y):
     """Update mark and hidden tiles based on tap."""
+    global taps
+    taps += 1
     spot = index(x, y)
     mark = state['mark']
 
@@ -85,6 +88,10 @@ def draw():
         color('black')
         #Reduce the size of the font
         write(tiles[mark], font=('Arial', 20, 'normal'))
+    
+    # se muestran los taps en la pantalla
+    goto(-180, 150)
+    write(f"Taps: {taps}", font=('Arial', 20, 'normal'))
 
     update()
     ontimer(draw, 100)
