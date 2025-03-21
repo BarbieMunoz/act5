@@ -73,7 +73,11 @@ def draw():
     if mark is not None and hide[mark]:
         x, y = xy(mark)
         up()
-        goto(x + 2, y)
+        #change offset depending on the length of the number
+        offset = 10 if tiles[mark] >= 10 else 16
+        """Center the number vertically and apply the 
+        offset horizontally"""
+        goto(x + offset, y + 8)
         color('black')
         write(tiles[mark], font=('Arial', 30, 'normal'))
 
