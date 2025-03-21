@@ -49,18 +49,6 @@ def xy(count):
     """Convert tiles count to (x, y) coordinates."""
     return (count % 8) * 50 - 200, (count // 8) * 50 - 200
 
-# funcion para verificar si ya están todos las celdas descubiertas
-def check_win():
-    for tile in tiles:
-        if tile:
-            return False
-
-    clear()
-    goto(0,0)
-    color('green')
-    write('Has ganado!', font=('Arial', 50, 'bold'))
-    update()
-    return True
 
 # variable para guardar los taps
 taps =0
@@ -78,7 +66,6 @@ def tap(x, y):
         hide[mark] = False
         state['mark'] = None
     
-    check_win()
 
 def draw():
     """Draw image and tiles."""
@@ -86,6 +73,14 @@ def draw():
     goto(0, 0)
     shape(car)
     stamp()
+
+    # mientras todos estén destapados
+    if all(not h for h in hide):
+        goto(-100, 0)
+        color('green')
+        write("Yei, ganaste!", font=('Arial', 30, 'bold'))
+        update()
+        return
 
     for count in range(64):
         if hide[count]:
