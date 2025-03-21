@@ -15,7 +15,12 @@ from turtle import *
 from freegames import path
 
 car = path('car.gif')
-tiles = list(range(32)) * 2
+emojis = ['🍎', '🍌', '🍉', '🍇', '🍒', '🍓', '🥝', '🥕', '🌽', '🍕',
+          '🍔', '🍩', '🎈', '🚗', '🚌', '🚀', '🐶', '🐱', '🐭', '🐹', 
+          '🐰', '🦊', '🐻', '🐼', '🐨', '🐯', '🦁', '🐮', '🐷', '🐸', '🐵']
+
+tiles = emojis * 2
+
 state = {'mark': None}
 hide = [True] * 64
 
@@ -73,13 +78,9 @@ def draw():
     if mark is not None and hide[mark]:
         x, y = xy(mark)
         up()
-        #change offset depending on the length of the number
-        offset = 10 if tiles[mark] >= 10 else 16
-        """Center the number vertically and apply the 
-        offset horizontally"""
-        goto(x + offset, y + 8)
+        goto(x + 15, y + 10)
         color('black')
-        write(tiles[mark], font=('Arial', 30, 'normal'))
+        write(tiles[mark], font=('Arial', 20, 'normal'))
 
     update()
     ontimer(draw, 100)
