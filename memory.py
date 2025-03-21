@@ -15,10 +15,12 @@ from turtle import *
 from freegames import path
 
 car = path('car.gif')
+#Replace 32 numbers for 32 emojis
 emojis = ['🍎', '🍌', '🍉', '🍇', '🍒', '🍓', '🥝', '🥕', '🌽', '🍕',
           '🍔', '🍩', '🎈', '🚗', '🚌', '🚀', '🐶', '🐱', '🐭', '🐹', 
           '🐰', '🦊', '🐻', '🐼', '🐨', '🐯', '🦁', '🐮', '🐷', '🐸', '🐵']
 
+#duplicate the emoji list
 tiles = emojis * 2
 
 state = {'mark': None}
@@ -78,8 +80,10 @@ def draw():
     if mark is not None and hide[mark]:
         x, y = xy(mark)
         up()
+        #Remove offset logic
         goto(x + 15, y + 10)
         color('black')
+        #Reduce the size of the font
         write(tiles[mark], font=('Arial', 20, 'normal'))
 
     update()
