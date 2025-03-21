@@ -49,6 +49,19 @@ def xy(count):
     """Convert tiles count to (x, y) coordinates."""
     return (count % 8) * 50 - 200, (count // 8) * 50 - 200
 
+# funcion para verificar si ya están todos las celdas descubiertas
+def check_win():
+    for tile in tiles:
+        if tile:
+            return False
+
+    clear()
+    goto(0,0)
+    color('green')
+    write('Has ganado!', font=('Arial', 50, 'bold'))
+    update()
+    return True
+
 # variable para guardar los taps
 taps =0
 def tap(x, y):
@@ -64,7 +77,8 @@ def tap(x, y):
         hide[spot] = False
         hide[mark] = False
         state['mark'] = None
-
+    
+    check_win()
 
 def draw():
     """Draw image and tiles."""
